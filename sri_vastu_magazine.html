@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Magazine - Sri Vastu Homes - Sri Ganesha Astrology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --maroon:        #4a0e0e;
+      --maroon-dark:   #3a0808;
+      --saffron:       #C8922A;
+      --saffron-light: #e6a832;
+      --gold:          #D4AF37;
+      --cream:         #FDF6EC;
+      --cream-mid:     #f5ead6;
+      --text-dark:     #2c1a1a;
+      --text-muted:    #888;
+      --border-light:  #e8d5c0;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; }
+
+    /* ══ BACK NAV ══ */
+    .back-nav {
+      background: var(--maroon-dark);
+      padding: 10px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .back-nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      color: var(--gold); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 7px;
+      transition: color 0.2s;
+    }
+    .back-nav a:hover { color: var(--saffron-light); }
+    .back-nav-title {
+      font-family: 'Cinzel', serif;
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+      color: var(--saffron);
+    }
+    .back-nav-sections { display: flex; gap: 4px; }
+    .back-nav-sections a {
+      font-size: 10px; letter-spacing: 0.5px;
+      padding: 5px 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(212,175,55,0.25);
+      color: #d8c0a0;
+    }
+    .back-nav-sections a:hover { background: rgba(212,175,55,0.1); color: var(--gold); }
+
+    /* Offset anchor scroll so sticky nav doesn't cover it */
+    #astrology, #vastu, #spiritual { scroll-margin-top: 54px; }
+
+    /* ══ PAGE WRAPPER ══ */
+    .page { max-width: 1200px; margin: 0 auto; padding: 28px 20px 48px; }
+
+    /* ══════════════════════════════════════
+       HERO TILE — Big Magazine Banner
+    ══════════════════════════════════════ */
+    .hero-tile {
+      position: relative;
+      background: var(--maroon-dark);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: stretch;
+      min-height: 280px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 50%, rgba(200,146,42,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 80%, rgba(212,175,55,0.10) 0%, transparent 50%),
+        linear-gradient(135deg, #3a0808 0%, #5a1010 50%, #3a0808 100%);
+    }
+    /* Decorative mandala-ish ring */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      right: -60px; top: 50%; transform: translateY(-50%);
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.12);
+      box-shadow: 0 0 0 30px rgba(212,175,55,0.05), 0 0 0 60px rgba(212,175,55,0.03);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      padding: 40px 48px;
+      width: 100%;
+    }
+    .hero-emblem {
+      flex-shrink: 0;
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: rgba(212,175,55,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+      box-shadow: 0 0 30px rgba(212,175,55,0.2), inset 0 0 20px rgba(212,175,55,0.05);
+    }
+    .hero-text { flex: 1; }
+    .hero-kicker {
+      font-family: 'Cinzel', serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      color: var(--saffron);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: 38px; font-weight: 900; line-height: 1.1;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .hero-title span { color: white; }
+    .hero-desc {
+      font-size: 13.5px; line-height: 1.7;
+      color: #c8b09a;
+      max-width: 480px;
+      margin-bottom: 24px;
+    }
+    .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .hero-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 9.5px; font-weight: 700; letter-spacing: 1px;
+      padding: 5px 12px;
+      border-radius: 3px;
+      border: 1px solid rgba(212,175,55,0.35);
+      color: var(--gold);
+      background: rgba(212,175,55,0.06);
+    }
+    .hero-stats {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 20px;
+      text-align: center;
+    }
+    .stat { border-left: 1px solid rgba(212,175,55,0.2); padding-left: 24px; }
+    .stat-num { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 10px; color: #9a8070; letter-spacing: 0.5px; margin-top: 4px; }
+
+    /* ══════════════════════════════════════
+       SECTION HEADER
+    ══════════════════════════════════════ */
+    .section-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 16px;
+    }
+    .section-header-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--border-light), transparent);
+    }
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      color: var(--maroon);
+      background: var(--maroon);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 4px;
+      display: inline-flex; align-items: center; gap: 6px;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════
+       SMALL ARTICLE TILES GRID
+    ══════════════════════════════════════ */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    /* ── Individual Article Tile ── */
+    .art-tile {
+      background: white;
+      border-radius: 10px;
+      border: 1.5px solid var(--border-light);
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .art-tile:hover {
+      border-color: var(--saffron);
+      box-shadow: 0 4px 20px rgba(74,14,14,0.08);
+      transform: translateY(-1px);
+    }
+    /* Tile top: image + header */
+    .tile-top {
+      display: flex; align-items: stretch;
+    }
+    .tile-img {
+      width: 72px; height: 72px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .tile-header {
+      flex: 1;
+      padding: 10px 12px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .tile-tag {
+      font-size: 8.5px; font-weight: 700; letter-spacing: 1px;
+      color: var(--saffron);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .tile-title {
+      font-size: 11.5px; font-weight: 700;
+      line-height: 1.38;
+      color: var(--maroon);
+    }
+    .tile-date {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    /* Tile toggle bar */
+    .tile-toggle {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 7px 12px;
+      background: var(--cream-mid);
+      border-top: 1px solid var(--border-light);
+      font-size: 10px; font-weight: 700;
+      color: var(--maroon);
+      font-family: 'Lato', sans-serif;
+      letter-spacing: 0.3px;
+      user-select: none;
+    }
+    .tile-arrow {
+      font-size: 13px;
+      color: var(--saffron);
+    }
+
+    /* ══ MODAL OVERLAY ══ */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 8, 8, 0.72);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(3px);
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-box {
+      background: var(--cream);
+      border-radius: 14px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+      overflow: hidden;
+      animation: modalIn 0.22s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal-header {
+      background: var(--maroon-dark);
+      padding: 18px 20px 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+    .modal-header-img {
+      width: 80px; height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+      border: 2px solid rgba(212,175,55,0.3);
+    }
+    .modal-header-text { flex: 1; }
+    .modal-tag {
+      font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+      color: var(--saffron);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .modal-title {
+      font-family: 'Cinzel', serif;
+      font-size: 15px; font-weight: 700; line-height: 1.35;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .modal-date {
+      font-size: 10px;
+      color: #9a8070;
+    }
+    .modal-close {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(212,175,55,0.2);
+      color: var(--gold);
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(212,175,55,0.15); }
+    .modal-body {
+      padding: 20px 24px 28px;
+      overflow-y: auto;
+      font-size: 13px;
+      line-height: 1.85;
+      color: #3a2a1a;
+      flex: 1;
+    }
+    .modal-body p { margin-bottom: 12px; }
+    .modal-body p:last-child { margin-bottom: 0; }
+    .modal-lang-divider {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 16px 0 12px;
+    }
+    .modal-lang-label {
+      font-size: 10px; font-weight: 700;
+      color: var(--saffron);
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    /* ══ View All Button ══ */
+    .view-all-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      padding: 9px 20px;
+      background: var(--maroon);
+      color: white;
+      border: none; border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-transform: uppercase;
+    }
+    .view-all-btn:hover { background: var(--saffron); }
+    .section-footer { margin-top: -22px; margin-bottom: 36px; }
+
+    /* ══ Responsive ══ */
+    @media (max-width: 760px) {
+      .hero-content { flex-direction: column; gap: 24px; padding: 28px 24px; }
+      .hero-emblem { width: 80px; height: 80px; font-size: 38px; }
+      .hero-title { font-size: 26px; }
+      .hero-stats { flex-direction: row; gap: 28px; }
+      .stat { border-left: none; border-top: 1px solid rgba(212,175,55,0.2); padding-left: 0; padding-top: 12px; }
+      .hero-tile { min-height: unset; }
+    }
+    @media (max-width: 500px) {
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ══ INTERIOR GALLERY POPUP ══ */
+    .int-gallery-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(20,4,4,0.82);
+      z-index: 600;
+      align-items: center; justify-content: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .int-gallery-overlay.active { display: flex; }
+    .int-gallery-box {
+      background: var(--cream);
+      border-radius: 14px;
+      width: 100%; max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      animation: modalIn 0.22s ease;
+      padding: 24px;
+      position: relative;
+    }
+    .int-gallery-title {
+      font-family: 'Cinzel', serif;
+      font-size: 15px; font-weight: 700;
+      color: var(--maroon);
+      margin-bottom: 16px;
+      padding-right: 32px;
+    }
+    .int-gallery-close {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--maroon);
+      border: none;
+      color: var(--gold);
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 15px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .int-gallery-close:hover { background: var(--saffron); }
+    .int-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .int-gallery-grid img {
+      width: 100%; aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .int-gallery-grid img:hover {
+      border-color: var(--saffron);
+      transform: scale(1.03);
+    }
+
+    /* ══ INTERIOR BIG IMAGE VIEWER ══ */
+    .int-big-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 700;
+      align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    .int-big-overlay.active { display: flex; }
+    .int-big-overlay img {
+      max-width: 92vw; max-height: 92vh;
+      object-fit: contain;
+      border-radius: 6px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      animation: modalIn 0.18s ease;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="back-nav">
+  <a href="Sri_Vastu_Homes.html">← Back to Home</a>
+  <span class="back-nav-title">📖 Sri Vastu Magazine</span>
+  <div class="back-nav-sections">
+    <a href="#astrology">Astrology</a>
+    <a href="#vastu">Vastu</a>
+    <a href="#spiritual">Spiritual</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════
+       HERO — Big Magazine Tile
+  ══════════════════════════════════ -->
+  <div class="hero-tile">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-emblem">🕉</div>
+      <div class="hero-text">
+        <div class="hero-kicker">Est. 2026 · Digital Edition</div>
+        <h1 class="hero-title">Sri Vastu Homes<br><span>Sri Ganesha Astrology</span> Magazine</h1>
+        <p class="hero-desc">India's premier source for Vedic Astrology, Vastu Shastra, and Spiritual Wisdom — decoded for the modern seeker.</p>
+        <div class="hero-tags">
+          <span class="hero-tag">📖 Astrology</span>
+          <span class="hero-tag">🏠 Vastu</span>
+          <span class="hero-tag">🧘 Spiritual</span>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Articles This Month</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Sections</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">Brand New Edition</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       📖 ASTROLOGY
+  ══════════════════════════════════ -->
+  <div id="astrology" class="section-header">
+    <span class="section-label">📖 Astrology Magazine</span>
+    <div class="section-header-line"></div>
+  </div>
+
+  <div class="articles-grid">
+
+    <div class="art-tile" onclick="openModal('Graha Transit','Jupiter Transit 2025 — What It Means for Your Rashi','May 24, 2025','https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=160&q=70','modal-jupiter')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/639662004_1434159538721960_3531713987843282254_n.jpg" alt="Jupiter"/>
+        <div class="tile-header">
+          <div class="tile-tag">Graha Transit</div>
+          <div class="tile-title">කේමද්‍රම යෝගය</div>
+          <div class="tile-date">May 24, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-jupiter" class="modal-content" style="display:none">
+      <p>කේමද්‍රම යෝගය
+එකවර හෝ ක්‍රම ක්‍රමයෙන් දිලිදුබාවය ළගාකරන කේමදෘම යෝගය ලැබෙන ක්‍රමය
+කේමදෘම යෝගය කියන්නේ:
+ • ජන්ම කුණ්ඩලියේ නැත්තන් හදහනේ චන්ද්‍රයා ඉදිරිය (2) හා පසුපස (12) භාවයන් තුළ
+කිසිදු ග්‍රහයෙක් නොමැති වීම
+ • චන්ද්‍රයාට කෙන්ද්‍ර (1,4,7,10) වලින් ග්‍රහ බලයක් නොලැබීම
+ • චන්ද්‍රයා තනියෙන් සිටීම
+මෙය “චන්ද්‍ර දුර්බලතාවය” ලෙසත් සලකනවා.
+මේ ගැටලුව එන්න පූර්ව ජන්ම හේතු ට්ගියෙනවා..
+පුරාණ ග්‍රන්ථයන් වලට සහ ගුරුකුල් වලට අනුව,
+කේමදෘම යෝගය පූර්ව ජන්මයේ:
+ • මව්වරුන්ට, ස්ත්‍රීන්ට අපහාස කිරීම
+ • දුප්පත් අයට ආධාර නොදීම
+ • දාන-ධර්ම වලින් දුරස්වීම
+ • මානසික වේදනාවන් ඇති කිරීම
+චන්ද්‍රයා “මාතා, මනස, කරුණාව” නියෝජනය කරන නිසා, මේ ක්‍රියාවල  ප්‍රතිඵලයක් ලෙස මෙය පෙන්වෙනවා.
+හැබැයි ඒ කියලා තමන්ට වින කරන ඉහත අයට ගැතුවෙන්න කියන එක නෙමෙ...
+🌑 කේමදෘම යෝගයෙන් ලැබෙන විපාක
+මේ දුර්යෝගය ශක්තිමත් නම්:
+ • මානසික එකලස්භාවය
+ • ධන අස්ථිරභාවය
+ • පවුල් සහය නොලැබීම
+ • සමාජයෙන් වෙන්වීම
+ • නිතර සිත් වියවුල්
+හැබැයි යෝගය භංග වී ඇත්නම් පුද්ගලයා ඉතා ශක්තිමත්, ස්වයං නිර්මාණශීලී, තනිව උසස්වෙන කෙනෙක් වෙන්න පුළුවන්.
+🌕 කේමදෘම භංග වන ක්‍රම
+මෙම යෝගය භංග වන අවස්ථා:
+ 1. චන්ද්‍රයාට කෙන්ද්‍රයකින් ග්‍රහ බලය තිබීම
+ 2. ගුරු (බ්‍රහස්පති) චන්ද්‍රයාට දෘෂ්ටිය දීම
+ 3. චන්ද්‍රයා උච්ච / ස්වක්ෂේත්‍රව සිටීම
+ 4. ලග්නේශ බලවත් වීම
+ 5. රාජයෝග සමඟ සම්බන්ධ වීම
+විශේෂයෙන් ගුරු-චන්ද්‍ර යෝගය (Gajakesari Yoga) ඇතිනම්, කේමදෘම බලය ඉතා අඩු වෙයි.
+හැබැයි ප්‍රශ්නෙ මෙහෙම භංග වීම් තියෙන අයගේ ජන්මපට්ග්‍ර මම පෞද්ගලිකව වසර 20 තිස්සේ පරීක්ෂා කරලා තියෙනවා නමුත් ඔවුන් අදාල ගැටලු සමනය කරගන්න තාක් ඉහත දෝශවලින් පීඩා විදිනවා 
+ශාන්ති කර්ම (උපශම)
+ 1. සොමවාර ව්‍රත
+ • සොමවාර උපාසන
+ •    අභිෂේක (ශිව ලිංගයට)
+2. ශිව දෙවුදුන් වැදීම
+ • “ඔම් නමඃ ශිවාය” ජප 108 / 1008
+ •  ට්ගර්පන පූජා
+3. චන්ද්‍ර ශාන්ති
+ • “ඔම් සෝම් සෝමාය නමඃ” මන්ත්‍ර ජප
+ • සුදු වස්ත්‍ර, සුදු අහාර දානයන්
+ • දුප්පත් කාන්තාවන්ට සැලකීම
+4. දාන
+ • කිරි, අල, කෑම
+ • සිඟිති දරුවන්ට සහය දීම
+මේවගේ ශාන්තිකර්ම වගේම හරියටම කේන්දරේට අදාල දාන්තීන් ටික කරලා..මේ යෝගය භන්ග කරගන්න...
+මේක තියෙන මිනිස්සු නරක නෑ හැබැයි දුර්වල මනසවල් ඕනම කෙනෙකුට නම්මගන්න පුලුවන්... නිද්‍රාශීලි බව සහ රිනාත්මකතාවයෙන් යුතුයි.. මින් එලියට ආවම ඔවුන් විශාල සාර්තකත්වයක් ලබාගන්නවා...</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Shadow Planets','සූර්‍ය දෙවියන් හෙවත් ආදිත්‍ය දෙවියන්','April 1, 2020','https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=160&q=70','modal-surya')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/91565730_1549679718529820_4337467041070972928_n.jpg" alt="Rahu"/>
+        <div class="tile-header">
+          <div class="tile-tag">Shadow Planets</div>
+          <div class="tile-title">සූර්‍ය දෙවියන් හෙවත් ආදිත්‍ය දෙවියන්</div>
+          <div class="tile-date">April 1, 2020</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-surya" class="modal-content" style="display:none">
+      <p>සූර්‍ය දෙවියන් හෙවත් ආදිත්‍ය දෙවියන්.. 01<br><br>
+පුරාණ වේද ශාස්ත්‍රානුකූලව සූර්‍ය දෙවියන් එසේ නැතහොත් ආදිත්‍ය ස්වරූපයන් හින්දු වයිදිකව හදුන්වන්නේ සූරිය දේවතාවා ලෙසයි. යම් යම් දැනුම් ස්තරවලදී ඒ ඒ දේවතාවන් ස්තිරවම දැනගන්නට ලැබුනත් සරලව සූර්‍ය දේවතාවන් ගැන බලමු.<br><br>
+සූර්‍ය දේවතාවා ජීවය රැකගන යන්නාවූත් ලෝකයට ආලෝකයසහ උනුසුම ලබාදීම තම කාර්‍ය කොට සිටින දේවතාවා වන්නේය. එසේම මේ සූර්‍ය දේවතාවා ඉතා අගනා ඒක චක්‍ර තමාගේ කරත්තය රතය කරගන සම්පූර්න විශ්වය වටා තමන්ගේ රතාචාර්‍ය වන රතුවර්ණයෙන් යුතු අරුණ දෙවියන් සමග නිරන්තරව ගමන් කරයි.<br><br>
+මේ අති රමණීය කරත්තය ඉතා වටිනා උසස්තම අශ්වයන් හත්දෙනෙකු විසින් ඉතා ජවසම්පන්නව නොනවතින ගමනක් වෙනුවෙන් අදිනු ලබයි.<br><br>
+විවස්වාන් (සුපිරිතම තත්වය), සාවිත්‍රේ(සියල්ල ලබා දෙන්නා), භාශ්කර(ආලෝකය ලගා කරන්නා), දිනකර(දිනය ලගා කරන්න), ලෝකචක්ශු(මේ ලෝකයේ ඇස), ග්‍රහරාජ(නවග්‍රග මණ්ඩලයේ නායකයා), සහස්‍රකිරණ(උත්තම කිරන 1000 සහිත නිසා), විශ්නූ (සූර්‍යාගේ ආදිත්‍යමය ස්වරූපයක් දරන විශ්නු නිසා), සූර්‍ය නාරායණ ආදි මා දන්නා පමනින් 1008ක් වන හේතු සහිත නාමයන්ගෙන් විරාජමාණ වන දේවතාවෙකි.<br><br>
+ප්‍රතමයෙන් සූර්‍ය දේවතාවා විදහාපන්නේ පුරාණතම වේදය වන රිග් වේදයේ ක්‍රිස්තුපූර්ව 1000ත් 1500ත් අතර කාලයේදීය එනම් මෙයටවසර 3500කටපමණ ඉහතදීය. එසේම ක්‍රිස්තු පීර්ව 2වන සියවසට අයත් බටහිර ඉන්දියාවෙ භාජ සහ සන්ගු නම් බෞද්ද ගුහා වන්හී ද්වාරයන් විවෘතකරීමට දක්වා ඇත.<br><br>
+දස රිශීන්ගේ එක් රිශි කෙනෙක් වන කාශ්‍යප රිශිගේ සහ අදිති දේවියගේ පුත්‍රයා වන්නෙද සූර්‍ය දේවතාවාය. එබැවින් අපගේ විශ්වයට අයත් මහා බ්‍රහ්මයාට රිජු පීතෲ පස නෑකමකින්ද යුක්ත විශාල බලයකට හිමිකම් කියයි.<br><br>
+එසේම සන්ද්‍යාදේවිය සහ චායා දේවිය භාර්‍යාවන් වන අතර යම සහ යමි, අස්විනී කුමාරවරුන්ගේ පියා වන්නේද සූර්‍යලෝක පාලක සූර්‍ය දේවතාවන්ම වේ.<br><br>
+විශ්වකර්ම දෙවියන් විසින් තමන්ගේ දුව වන සන්ද්‍යා දේවියට තම ස්වමියාගේ කිරණ දරාගැනීමට අපහසු වන අවස්තාවේ සූර්‍ය දේවතාවන්ගේ කිරණයන් අඩුකර තම දියනියට පහසුවක් සැලසීමටද කටයුතු කරයි.<br><br>
+සූර්‍ය දෙවියන්ගේ දිව්‍යමය කිරණයන් ඇතුලත් කර ස්වර්ග ලෝකයේ නිර්මිත ආයුද අතර කිසිදා නොපරදින විශ්නු දෙවියන්ගෙ සුදර්ශන් චක්‍රය, ශිව දෙවියන්ගේ ත්‍රීශූලය, කුභේරයන්ගේ මුගුර, කාර්තිකේයගේ වේලායුදය මේ අතරින් සමහරක් වන්නේය.<br><br>
+එසේම සූර්‍ය දේවතාවන් විසින් ධවල යජූර් වේදය යජ්නවල්ලකට දුන් අතිමහත්ම වටිනා වස්තුවකි. එසේම මායා මානික්‍ය වූ ශ්‍යාමන්තක මානික්‍ය සූර්‍ය දෙවියන් විසින් සත්‍යජිත් වෙත ප්‍රදානය කරන ලද්දකි.<br><br>
+මෙම සූර්‍ය දෙවියන්ගේ රතය ඉන්දියාවේ කෝනක් සූර්‍ය දෙවොල අබියසට ගියවිට ඔනෑම කෙනෙකුට දැකගත හැක. වැලි ගලින් ක්‍රිස්තුවර්ශ 12දී පමණ රෝද 12කින් යුක්තව වර්ශයේ මාස 12 නියෝජනය වන පරිද්දෙන් නිර්මාණය කර ඇත.<br><br>
+මෙලෙස සූර්‍ය දේවතාවා විසින් යම් ලෝක කිහිපයක් වෙත තම අනසක පතුරා මෙන්ම ඉතා විශාල සේවාවක් සිදුකරමින් සිටීම උදෙසා වයිදික පරම්පරාවන් කෘතගුන සැලකීම නිත්‍ය කර්තවයක් ලෙස සිදුකර විශාල පිහිටක් ලබයි.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Muhurtha','5 Auspicious Nakshatra Days for New Beginnings','May 20, 2025','https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=160&q=70','modal-nakshatra')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/621919258_1407787774692470_2683932441450682497_n.jpg" alt="Nakshatra"/>
+        <div class="tile-header">
+          <div class="tile-tag">Muhurtha</div>
+          <div class="tile-title">රුද්‍රාම්ස...🔥💥🌪</div>
+          <div class="tile-date">May 20, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-nakshatra" class="modal-content" style="display:none">
+      <p>එක් එක් වර්ග චක්‍රයන් හරහා එක් එක් විදයන් රිශිභාදිතයේ පවතී...
+උට්ග්ට්ගර ඉන්දීය ආදිත්‍ය ගුරුකුලය පහත පරිදි එකොලොස්වන වර්ගචක්‍රය දිගහරී...
+ජන්මියකුගේ ජන්මපත්‍ර සටහන්වල සමහර ග්‍රහ අතිශයින් අහිතකර ලෙස ක්‍රියා කරන අවස්ථා තිබේ. එවැනි විශේෂ බලපෑම් හඳුනාගැනීමට භාවිතා කරන විශේෂ වර්ග කුණ්ඩලියක් ලෙස රූද්‍රාංශය (Rudramsa) හෙවත් D11 කුණ්ඩලිය හැඳින්වේ.
+ඇත්තෙන්ම D11 කුණ්ඩලි වර්ග තුනක් ලෙසට වෙන වෙනම පවත්වාගෙන යයි.මක්නිසාද ඒ ඒ ගුරුකුල් වල පවතින රහස්‍ය ගනනයන් හරහා ගනනය කරන බැවින්.
+රූද්‍රාංශය 
+සමහරුන් මෙය පරා අංශ ලෙස හඳුන්වන නමුත්, ශාස්ත්‍රයේ ශ්ලෝක අනුව නිවැරදි නාමය රූද්‍රාංශය වේ.
+ලාභාංශය (ලන්කාවේ බොහෝවිට මෙය භාවිතාවේ).
+– සමහරුන් මෙය ගෙවල් හා දේපළ ලාභ සඳහා භාවිතා කරන අතර, තවත් සමහරුන් ආදායම (income) සඳහා භාවිතා කරති.
+අයර් (Iyer) විසින් භාවිතා කළ වෙනත් D11 කුණ්ඩලියක් ද පවතී.
+රූද්‍රාංශයේ සැබෑ භාවිතය – මහත්මා ගාන්ධිගේ කුණ්ඩලියෙන් උදාහරණයක් ලෙස
+රූද්‍රාංශය සැබෑවටම ක්‍රියා කරන ආකාරය මහත්මා ගාන්ධිගේ ජන්ම කුණ්ඩලිය මගින් පැහැදිලි කළ හැක.
+ගාන්ධිගේ 7වන භාවාධිපති වූ මන්ගල් ලග්නයේ පිහිටා ඇත. මෙය ඔහුගේ ජීවිතය ඉතා අශාන්තිමත්, සිද්ධීන්ගත හා සටන්මය වූ බව පෙන්වයි. ඔහුට විශේෂ දසාවක් වූ ද්විසප්තති සමා දසා (Dvisaptati Sama Dasa) යොදාගත හැකි වේ.
+ඔහුගේ ජීවිතය සම්පූර්ණයෙන්ම වෙනස් කළ සිද්ධි දෙකක් මෙහි විමර්ශනය කෙරේ.
+බ්‍රරහ්මචර්යය (බ්‍රහ්මචාරී ජීවිතයට යෑමේ) තීරණය
+මෙම තීරණය ගාන්ධි විසින් ප්‍රකාශ කළේ මන්ගල් මහා දසාවේ – සඳ අන්තර්දසාවේදී ය.
+රූද්‍රාංශ D11 කුණ්ඩලිය දෙස බැලූ විට,
+මන්ගල් 8වන භාවයේ නිච ලෙස පිහිටා ඇත
+මෙය සම්බන්ධතා බිඳවැටීම, විවාහික ජීවිතයෙන් ඉවත්වීම, බ්‍රහ්මචර්යය වැනි අර්ථ දක්වයි.
+මන්ගල් අධිපති වූ සඳ ද 12වන භාවයේ නිච වී කේතු සමඟ ඇත
+මෙය සම්පූර්ණ විරක්තිය, වෙන්වීම හා ත්‍යාගය පැහැදිලිව පෙන්වයි.
+එබැවින් බ්‍රහ්මචර්ය තීරණය පහසුවෙන් තහවුරු කළ හැක.
+මරණ සිද්ධිය
+මෙය සිදු වූයේ
+රාහු දසාවේ – බුධ අන්තර්දසාවේදී ය.
+රූද්‍රාංශ D11 කුණ්ඩලිය අනුව,
+රාහු 6වන භාවයේ (සතුරන්ගේ භාවය) සූර්යයා සමඟ සිටී
+සූර්ය–රාහු යෝගයෙන් ග්‍රහණය (eclipse) සෑදේ.
+පසුව ගුරුගේ ප්‍රතිඵල ක්‍රියා කරයි
+ගුරු 3වන භාවයේ MKS (මරණ කාරක ස්ථානය) තුළ මාරක බුධ සමඟ සිටී.
+ඒ අනුව රාහු–බුධ දසාව පැහැදිලිවම මාරක දසාවක් වේ.
+රූද්‍රාංශය සමඟ උදු දසා භාවිතා කරන විට කරන ප්‍රතිකාර
+රූද්‍රාංශය සමඟ උදු දසා භාවිතා කරන විට, ග්‍රහය සඳහා අදාල මන්ත්‍ර අංකය ගණනය කළ යුතුය.
+එක් රූද්‍රාංශයක් = 2°43′38″
+ග්‍රහය පිහිටි අංශය අනුව අංකය ගණනය කරයි.
+ මන්ගල් ගනිමු.
+26°23′ ÷ 30 × 11 = 9.67
+ඉහළ පූර්ණ අංකය ගන්නා නිසා = 10වන රූද්‍රාංශය
+මෙහිදිජ් රුද්‍රාමන්ට්‍ර වලින් අදාල අන්කයේ මන්ට්‍රය ගතයුතුයි.
+ඕම් ගුරවේ නමක්...🙏</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Marriage Astrology','Mangal Dosha: Myths vs Reality — A Complete Guide','May 18, 2025','https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=160&q=70','modal-mangal')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/616850485_1401355308669050_7481612587681339689_n.jpg" alt="Mangal"/>
+        <div class="tile-header">
+          <div class="tile-tag">Marriage Astrology</div>
+          <div class="tile-title">සූර්‍ය කල නල චක්‍රය...</div>
+          <div class="tile-date">May 18, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-mangal" class="modal-content" style="display:none">
+      <p>පුරාන ජොතිශී පලාපල ක්‍රම වේදයක්වූ සූර්‍ය කල නල චක්‍රයෙන් පලාපල කීම කුමක්දැයි බලමු.
+මෙය සාමන්‍ය විම්ශෝත්ට්නරී ක්‍රමය නොවේ... එකම් චන්ද්‍ර මූලික ක්‍රමයක් නොවේ.
+සූර්‍ය කල නල කියන්නෙ ශරීරයේ තුල වන ශුක්ශ්ම ශක්ති පද්දතියේ සූර්‍ය ශක්තිය මනිපූර චක්‍රය හරහා ගලායන්නෙ කෙසේද යන්න බලා ඒහරහා සූර්‍ය ශක්තියේ ක්‍රියාකාත්වය බලන ජෝතිශ ක්‍රමවේදය වේ.
+තන්ත්‍ර වලදී මෙය පින්ගලා මාර්ගය ලෙස සලකන අතර උත්තර ඉන්දීය ආදිත්‍ය ගුරුකුල මෙය මනිපූරයේ සූර්‍ය කල නල ලෙස හදුන්වයි.
+නාම අර්තයෙන් ගන්නකොට 
+සුර්‍ය .. සූර්‍යා සහ ආත්මය
+කල.... කාලය සහ ශක්ති ප්‍රවාහයක්
+නල ... නාලිකාව හෙවත් සූක්ෂම ශක්ති නාලය
+සූර්‍ය දක්තිය ප්‍රදානකොට අදිකාරී බලය.. ක්ටියාශීලීත්වය.. ආත්මවිශ්වාසය..කරම ක්රියාත්මක වීම නියෝජනය කරයි.
+සරලව සූර්‍ය කල නල කියන්නෙ කාලයට අනුව ක්‍රියාකරන සූර්‍ය ශක්ති ප්‍රවාහය වගේ අර්තයක්..
+ජෝතිශයේ සූර්‍ය කල නාල සම්බන්දතාවය 
+සූර්‍ය බලය
+මේශ ..සිම්හ..දනු රාශි
+10වන භාවය..කාර්‍ය
+පිතෲ කර්මය 
+ආත්මය
+පූර්ව ආත්මීය ආයුර්වේද ජෝතිශය 
+ආදී දේවල් සදහා යොදාගන්නවා..
+මෙය කෙලින්ම ගනනය බලපාන්නෙ
+නායකත්වය සහ එහි පැවැත්ම
+රාජකාරී හා වෘත්තීය උසස්වීම් 
+ආත්ම ගෞරවය
+ශරීර ශක්තිය 
+ආරක්ශක ශක්තිය 
+බලය
+ජීර්නය
+කෝපය සහ අහම්කාරය වගේ දෙවල් වලට.
+සූර්‍ය කල නාල දර්මය ජ්‍රියාත්මක වීම හරහා සූර්‍ය ශක්තිය පිරිසිදුව බලෙන් නොව නිරායාසයෙන් ලැබීම ඇතිවීම විදියට හදුන්වනවා .
+මෙහිදී හදහනක සුය්‍ර්‍ය කල නල විශ්ලේශනය කරන්න.
+සූර්‍ය කලා එකක් තත්පර 24 ලෙස ගනින්න ඕන.
+සැමවිටම උදේ 6 න් පටන්ගන්න උදාහරණයක් විදියට උදේ 7 වෙනකන් ගනනයබ්කරන්න නම් සූර්‍ය නාල 150ක් එකතුකරගන්න.
+ඉන්පසු ප්‍රශ්න ජෝතිශය සහ මුහුර්ත නියමය එකතු කල්ල 
+අවශ්‍යනම් ප්‍රශ්න ජෝතිශ හෝ ජොඉතිශය යන දෙකෙන් පලාපල විග්‍රහය කරන්න පුලිවන්..
+නක්ශත්‍ර 27 ක්‍රමෙනුයි
+යෝගි සහ මෘත්‍යු භාග වලිනුයි
+ත්‍රිශ්පුට  එක්කයි කරන එක හරි නමුත් උපග්‍රහ ගනනය කරන්න එපා..
+හැබැයි වක්‍රතාවය සලකන්න ඕන..
+ලග්නය කුමන නැකතේද කියලත් බලන්න වෙනවා..
+යම් තරමක සන්කීර්න උනාට දසවැන්නට අදාලව
+මනීපූරය පවතින තැනට  අදාලව
+තාන්ත්‍රික අදාලතාවයන් වලට
+බලය වෙනුවෙන් ගැටලු හොයාගන...
+නිවැරදි යන්ට්‍ර  මන්ට්‍ර  තන්ට්‍ර සාදනයට විශාල ලෙස ප්‍රයෝජනවත් වෙන නිසා නිකන් රවිගෙ අපලෙ..අන්න ඒවගේ සාමොරදායික වචන එක්ක නොගිහින් ගරියට  වෘත්තීය වෙනුවෙන් බලය වෙනුවෙන්.. අදිකාරීත්වය වෙනුවෙන් පලාපල විග්‍රහ කරගන්න පුලුවන් සුවිශේශී ජ්‍රම වේදයක්...
+සන්කීර්න ගනනයක් තියෙනවා උනත්...
+හැබැයි කෙනෙක් ඒකෙන් පලාපල කියනවානම් නිවැරදිව සූර්‍ය කල නල චක්‍රය ඇදලා අදාල සූර්‍ය මන්ට්‍රය කියලා පලාපල කියන්න පටන් ගන්න....🙏🙏🙏</p>
+    </div>
+<div class="art-tile" onclick="openModal('Navagraha','The Nine Planets and Their Influence on Daily Life','May 12, 2025','https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=160&q=70','modal-navagraha')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/591560468_1360534236084491_304256312757283948_n.jpg" alt="Navagraha"/>
+        <div class="tile-header">
+          <div class="tile-tag">Navagraha</div>
+          <div class="tile-title">“නිලවන්ති ග්‍රන්ථය” (Nilavanthi Grantha)</div>
+          <div class="tile-date">May 12, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-navagraha" class="modal-content" style="display:none">
+      <p>නිලවන්ති කියන්නේ ශ්‍රී ලංකාවේ ජනප්‍රවාද, මන්ත්‍ර ශාස්ත්‍ර, නාග විද්‍යා, පූරාණ ගාථා, දුර්ලභ වේද ග්‍රන්ථ හා අඳුරු විද්‍යා වලට සම්බන්ධ අති පුරාණ වාර්තාවක් ලෙස ජනතාව අතර පැතිරුණු නාමයක්.
+මේ ග්‍රන්ථය සත්‍ය ග්‍රන්ථයක් ලෙස සනාථ වූ එකක් නොව, කාලයෙන් කාලයට ජනතා මතකෙහි මනෝරූප ලෙස, කතාපුවත්, බෙහෙත් කථා, යක්ෂ මන්ත්‍ර, නාග-විද්‍යා, අගස්ති මහර්ෂි පුරාවෘත්ත, මහාවංශාදී දේව-ස්ථාන සම්බන්ධ විස්තර මත පදනම්ව ගොඩනැගුණු ජනප්‍රවාද ගබඩාවක් ලෙසයි බහුතරය කියන්නේ.
+1. Nilavanthi කියන්නේ මොනවද?
+මෙය කියන්නේ අතිපුරාණ නාග විද්‍යා, මන්ත්‍ර ශාස්ත්‍ර, අද්භූත ශක්තිය, ලුහුබැඳි ලෝකය ගැන ප්‍රචලිත වූ කථා සංග්‍රහයක නමක්.
+ලංකාවේ බොහෝ දෙනා විශ්වාස කරන්නේ මෙම ග්‍රන්ථය
+ • පුතුරාජා (Nāga kings)
+ • සර්ප විද්‍යා
+ • දේව මන්ත්‍ර
+ • යක්ෂ විද්‍යා
+ • රහස් මාලිගා
+ • පුරාණ මන්ත්‍ර කවි
+වැනි දේවල් ඇතුළත් අතිශය ශක්තිමත් ග්‍රන්ථයක් බවට.
+2. Nilavanthi ග්‍රන්ථයේ ප්‍රධාන මාතෘකා
+ජනප්‍රවාද අනුව මෙහි ඇත්තේ:
+නාග ලෝක විස්තර
+ • භෝගරාජයන්ගේ නාග ලෝකය
+ • රූපාන්තාර ශක්තිය
+ • සර්පයන්ගේ ධානුර්වේද ශිල්ප
+ • නාග-මොකුරු මන්ත්‍ර
+මන්ත්‍ර – තන්ත‍්‍ර විද්‍යා
+ • කවච, යන්ත්‍ර
+ • විදිර්ණ මන්ත්‍ර
+ • සත්තාcaras (spirit invocation)
+ • බොහෝ විට භයදායක ලෙස බෙදාගත් මන්ත්‍ර
+ශාස්ත්‍ර – පුරාණ කථා
+ • අගස්ති මහර්ෂි
+ • කාලකේයයන්
+ • රාවණ යන්ත්‍ර විද්‍යා
+ • සරස්වතී දේවියගේ නාග-ගුප්ත ශිෂ්‍ය
+✔ අඳුරු විද්‍යා සම්බන්ධ දේවල් (folk belief)
+ • අස්ට්‍ර-විද්‍යා
+ • යක්ෂ පූජා
+ • වටාර ගෙඩි මන්ත්‍ර
+ • නාග වස්තු සුරක්ෂාව
+3. Nilavanthi ග්‍රන්ථය ඇත්තටම තිබුණා ද?
+පුරාවිද්‍යා / පාලි ග්‍රන්ථ / සංස්කෘත ග්‍රන්ථ වල කිසිදු තහවුරු කරපු “Nilavanthi” ග්‍රන්ථයක් නැහැ.
+මෙය ඉතා පැරණි භාෂාවේ තිබුණු ගුප්ත “Nāga Grantha” එකක් ලෙස අනෙක තැන පවසනවා.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Dasha System','Mahadasha & Antardasha: Timing Events in Your Life','May 10, 2025','https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=160&q=70','modal-dasha')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/611944025_1392972846173963_1217316947557898769_n.jpg" alt="Dasha"/>
+        <div class="tile-header">
+          <div class="tile-tag">Dasha System</div>
+          <div class="tile-title">මකර සංක්‍රාන්තිය</div>
+          <div class="tile-date">May 10, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-dasha" class="modal-content" style="display:none">
+      <p>මකර සංක්‍රාන්තිය 
+වේදික අර්ථය 
+මකර සංක්‍රාන්ති යනු සූර්යයා ධනු රාශියෙන් ඉවත් වී මකර රාශියටප්‍රවේශ වීමයි.
+මෙය සූර්ය සංක්‍රාන්තියක් වන අතර, චන්ද්‍ර මාසයට නොව සූර්ය ගතිකත්වයට අනුගත වීම නිසා සදාකාලිකව (සාමාන්‍යයෙන් ජනවාරි 14 හෝ 15) පැවැත්වේ.
+වේදයන් අනුව මෙය
+උත්තරායණය ආරම්භ වන දිනයයි
+දෙවියන්ගේ දිනයක් ලෙස සැලකේ (දෙවියන්ට දිනය – මනුෂ්‍යයන්ට වර්ෂයක්)
+භගවද් ගීතා (8.24) අනුව –
+උත්තරායණ කාලයේදී ශරීරය හැර යන ආත්මයන්ට මෝක්ෂයට යාමේ මාර්ගය විවෘත වේ.
+උත්තරායණය – ආධ්‍යාත්මික අර්ථය
+දකුණු ආයණය  – අන්ධකාරය, භෞතික භෝග
+උත්තරායණය – ප්‍රකාශය, ධර්මය, ජ්ඥානය
+ඒ නිසා මකර සංක්‍රාන්ති
+අභ්‍යන්තර පිරිසිදු වීම,
+කර්ම ශුද්ධිය,
+ආධ්‍යාත්මික උත්ථානය සඳහා ගුරුවරයා අතිශයින්ම බලවත් වේ.
+ජ්‍යෝතිෂ්‍ය විස්තර 
+මකර රාශිය 
+ • රාශි අධිපති: ශනි ( ශනි දෙවියන්)
+ • තත්ත්වය: පෘථිවි (පටවි)
+ • ගුණය: චර (චලනය වෙනවා)
+මකරය නියෝජනය කරන්නේ
+කර්ම
+වගකීම්
+ආත්ම නියෝග
+දිගුකාලීන සාර්ථකත්වය
+සූර්යයා මෙහි ඇතුළු වීමෙන්
+ආලෝකය + කර්ම ශක්තිය එකතු වේ
+අධිෂ්ඨානය සහ ධෛර්යය වර්ධනය වේ
+🪐 ශනි සහ සූර්ය සම්බන්ධය
+ශනි – කර්ම දෙවියන්
+සූර්ය – ආත්ම ශක්තිය (Atma Karaka)
+👉 මෙහිදී
+ • අහංකාරය අඩුවෙයි
+ • අභිමානය පාලනය වේ
+ • සැබෑ වගකීමෙන් ජීවිතය බැලීමට බලය ලැබේ
+ඒ නිසා මකර සංක්‍රාන්ති
+කර්ම ගෙවීම්, නව ආරම්භ, ශාප නැසීම සඳහා යෝග්‍ය වේ.
+මකර සංක්‍රාන්තිදී කළ යුතු යහපත් ක්‍රියා
+1. සූර්ය අර්ඝ්‍ය පූජා
+ • උදෑසන සූර්ය උදාවේදී
+ • තඹ පාත්‍රයකින් ජලය + තිල + රතු මල්
+ • “ඕම් සූර්යයා නමඃ” මන්ත්‍රය
+2. ශනි ශාන්ති
+ • කළු තිල දානය
+ • කළු ඇඳුම්, තෙල්, ධාන්‍ය දානය
+ • “ඕම් ශං ශනිචරාය නමඃ”
+3. ස්නානය (පුණ්‍ය ස්නානය)
+ • ගංගා ස්නානය ඉතා බලවත්
+ • ගෙදරදී: උණුසුම් ජලයට තිල එකතු කර
+4. දාන
+ • අන්න දානය
+ • උණුසුම් ආහාර දානය
+සූර්ය කර්ම විශේෂයෙන් ක්‍රියාත්මක වේ..
+එසේම සූර්‍ය දෙවියන්.. ශිව දෙවියන් හා විශ්නු දෙවියන්ගේ සූර්‍ය ස්වරූප වෙනුවෙන් පූජා පවත්වයි.
+මකර සන්ක්‍රාන්තිය තනිකරම දිව්‍යමය ආලෝකය දිඋර්ගකාලීන සාර්තකත්වය සදහා ජීවිතයේ මාර්ගය විවර කරන දිනයකි...</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Lagna','The Ascendant: Why Your Rising Sign Matters Most','May 8, 2025','https://images.unsplash.com/photo-1464802686167-b939a6910659?w=160&q=70','modal-lagna')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/683017872_1487318780072702_6714218015291936956_n.jpg" alt="Lagna"/>
+        <div class="tile-header">
+          <div class="tile-tag">Lagna</div>
+          <div class="tile-title">ආයුර්වේදය සැබෑවටම කුමක්ද? (චරක සංහිතාව අනුව)</div>
+          <div class="tile-date">May 8, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-lagna" class="modal-content" style="display:none">
+      <p>🌿 ආයුර්වේදය සැබෑවටම කුමක්ද? (චරක සංහිතාව අනුව)
+බොහෝ දෙනා “ආයුර්වේදය” කියන වචනය ඇහුණම මතකයට එන්නේ දේවල් තුනක්
+කහ කිරි (turmeric milk),
+අවහිර කළ යුතු ආහාර ලැයිස්තු,
+හෝ අම්මා/අත්තම්මා කියපු පැරණි උපදෙස්.
+එකක්වත් සම්පූර්ණ ආයුර්වේදය නෙමෙයි. ඒවා නම් මේ ගැඹුරු විද්‍යාවේ කුඩා කොටස් ටිකක් විතරයි.
+ආයුර්වේදය කියන්නේ සම්පූර්ණ වෛද්‍ය විද්‍යාවක්. මනුෂ්‍ය ඉතිහාසයේ ඉතා පැරණි, නමුත් ක්‍රමවත් ලෙස ලේඛනගත කරපු වෛද්‍ය පද්ධතියක්.
+ඒකට තමන්ගේම
+* ශරීර විද්‍යාව (Anatomy)
+* ක්‍රියා විද්‍යාව (Physiology)
+* රෝග විද්‍යාව (Pathology)
+* ඖෂධ විද්‍යාව (Pharmacology)
+* ශල්‍ය වෛද්‍යය
+* මානසික වෛද්‍යය
+සහ මනුෂ්‍යයා කියන්නේ මොන වගේ ස්වභාවයක් තියෙන සත්වයෙක්ද කියන දේ ගැනම පුළුල් අවබෝධයක් තියෙනවා.
+මෙය “වෙල්නස් වීඩියෝ” එකකින් පැහැදිලි කරගන්න පුළුවන් දෙයක් නෙමෙයි.
+🌿 “ආයුර්වේදය” කියන වචනයේ තේරුම
+“ආයුර්වේද” (आयुर्वेद) කියන්නේ සංස්කෘත වචන දෙකක් එකතු වෙලා
+* Ayus (ආයුස්) = ජීවිතය (සම්පූර්ණ අර්ථයෙන්)
+* Veda (වේද) = දැනුම / විද්‍යාව
+ඒ කියන්නේ  “ජීවිතය පිළිබඳ විද්‍යාව”
+මෙය රෝග ගැන විද්‍යාවක් විතරක් නෙමෙයි.
+ලක්ෂණ ගැන විද්‍යාවක් නෙමෙයි.
+👉 ජීවිතය මොනවද?
+👉 ඒක කොහොම ක්‍රියා කරනවාද?
+👉 ඒක පවත්වාගෙන යන්නේ මොනවද?
+👉 ඒක විනාශ කරන දේවල් මොනවද?
+මේවට පිළිතුරු හොයන විද්‍යාවක්.
+මොඩර්න් වෛද්‍ය විද්‍යාව බොහෝවිට රෝගයක් ආවම ප්‍රතිකාර කරනවා.
+ආයුර්වේදය පටන් ගන්නේ එතැනින් නෙමෙයි 
+👉 “සම්පූර්ණ සෞඛ්‍යවත් ජීවිතයක් කියන්නේ මොන වගේද?” කියන ප්‍රශ්නයෙන්.
+⸻
+🌿 ආරම්භය ප්‍රධාන ග්‍රන්ථ
+ආයුර්වේදයේ ප්‍රධාන ග්‍රන්ථ තුන (බෘහත් ත්‍රයී)
+1. චරක සංහිතාව – අභ්‍යන්තර වෛද්‍ය (Kayachikitsa)
+    * ආහාර ජීර්ණය
+    * මනස
+    * දීර්ඝකාලීන රෝග
+    * ප්‍රතිශක්තිය
+2. සුශ්‍රුත සංහිතාව – ශල්‍ය වෛද්‍ය
+    * ශල්‍ය ක්‍රියා 300කට වඩා
+    * උපකරණ 120කට වඩා
+    * කටාරාක්ට්, නාස පුණරුත්ථාපනය වගේ surgery
+👉 ඔහුට “ශල්‍ය වෛද්‍යයේ පියා” කියන ගෞරවය ලැබෙන්නේ හේතුවක් තියෙනවා.
+3. අෂ්ටාංග හෘදයම්   සම්පූර්ණ සාරාංශයක්
+    * අදත් ඉන්දියාවේ වෛද්‍ය විද්‍යාලවල භාවිතා වෙනවා
+👉 මේවා “ගෙදර බෙහෙත් පොත්” නෙමෙයි.
+👉 පරම්පරා ගණනාවක් පුරා සංවර්ධනය කරපු විද්‍යාත්මක පද්ධතියක්.
+🌿 මූලධර්මය – පංච භූත හා දෝෂ 3
+ආයුර්වේදය පටන් ගන්නේ ස්වභාවධර්මය තේරුම් ගැනීමෙන්.
+පංච භූත (Elements 5)
+* ආකාශ (space)
+* වායු (air)
+* අග්නි (fire)
+* ජල (water)
+* පෘථිවි (earth)
+👉 මේවා භෞතික දේවල් නෙමෙයි.
+👉 ගුණ (qualities) ලෙස තේරුම් ගන්න ඕනේ.
+දෝෂ 3 (Doshas)
+1. වාත (Vata) – චලනය
+    * හුස්ම
+    * රුධිර සන්චාරය
+    * සිතුවිලි
+2. පිත්ත (Pitta) – පරිවර්තනය
+    * ජීර්ණය
+    * හෝමෝන
+    * දෘෂ්ටිය
+3. කඵ (Kapha) – ස්ථාවරත්වය
+    * ශරීර ව්‍යුහය
+    * සන්ධාන
+    * ප්‍රතිශක්තිය
+👉 හැමෝටම මේ තුනේ අනුපාත වෙනස්.
+ඒක තමයි ප්‍රකෘතිය (Prakriti)
+👉 ඒක අනුව
+* කෙනෙකුගේ ආහාරය
+* නින්ද
+* මානසික ප්‍රතිචාර
+* රෝග
+සියල්ල වෙනස් වෙනවා.
+👉 ඒ නිසා “එකටම යෝග්‍ය diet එකක්” කියලා දෙයක් නැහැ.
+🌿 සෞඛ්‍යය කියන්නේ මොකක්ද?
+චරක සංහිතාවේ සෞඛ්‍යය නිර්වචනය
+“සම දෝෂ, සම අග්නි, සම ධාතු, සම මල ක්‍රියා,
+ප්‍රසන්න ආත්ම, ඉන්ද්‍රිය, මනස — ඒ පුද්ගලයා සෞඛ්‍යවත්”
+👉 ඒ කියන්නේ
+* ශරීරය balance
+* ජීර්ණය balance
+* කය-මනස balance
+* ආත්මය සතුටින්
+👉 මේක දැන් තියෙන වෛද්‍ය පද්ධතියෙන් වඩා පුළුල්.
+👉 ලැබ් රිපෝට් හොඳ වුණත්
+* anxiety තියෙනවා
+* empty feeling එකක් තියෙනවා
+👉 ආයුර්වේදයට අනුව ඔයා සම්පූර්ණ සෞඛ්‍යවත් නෙමෙයි.
+🌿 අදටත් වැදගත් වන්නේ ඇයි?
+ආයුර්වේදය පැරණි නිසා වැදගත් නෙමෙයි.
+👉 වැදගත් වෙන්නේ
+* “මේ පුද්ගලයාගේ ස්වභාවය මොකක්ද?”
+* “රෝගයේ මුල හේතුව මොකක්ද?”
+* “සැබෑ සෞඛ්‍යය කියන්නේ මොකක්ද?”
+මේ ප්‍රශ්නවලට පිළිතුරු දෙන්න පුළුවන් නිසා.
+👉 අද ලෝකයේ බිලියන ගණනක් මිනිස්සු මේ පිළිතුරු හොයනවා.
+චරක සංහිතාව ඒකට ලියපු එකක්.
+අදත් ඒකට පිළිතුරු තියෙනවා.
+ජෝතිශයේ ආයුර්දාය කොටස වෙනදවසක බලමු..</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Yogas','Raja Yoga: The Planetary Combinations of Success','May 6, 2025','https://images.unsplash.com/photo-1519681393784-d120267933ba?w=160&q=70','modal-rajayoga')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/586224377_1352523146885600_5025458179980168516_n.jpg" alt="Raja Yoga"/>
+        <div class="tile-header">
+          <div class="tile-tag">Yanthra</div>
+          <div class="tile-title">නිවසට හෝ ව්‍යාපාරයට දනය</div>
+          <div class="tile-date">May 6, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-rajayoga" class="modal-content" style="display:none">
+      <p>නිවසට හෝ ව්‍යාපාරයට දනය ග්‍ර්න ඒමට යන්ට්‍රයක්
+යන්ත‍්‍රයක් යනු මැජික් නොවේ. එය ඔබගේ අපේක්ෂිත සිද්ධියන් හා කැමතුම් සපුරාලීමට උපකාරී වන මාර්ගයක්, ක්‍රමයක් හෝ තත්ත්‍වයක් පමණි. වේද හා ශාස්ත්‍රානුසාරයෙන් යන්ත‍්‍ර ශක්තිය විශාල ක්ෂේත්‍රයක් බැවින්, නිසි උපදෙස් හා විධාන පිළිපදින්නේ නම් එය ඉක්මන් මාර්ගයක් ලෙස සැලකේ. අපගේ මහ රැෂිවරු යන්ත‍්‍ර පුරුදු කර නිරවද්‍යතාවයට පත් කර, අපට එහි මාර්ගය දකිවමින් සිටිති. දැන් එය අනුගමනය කිරීම අප සතුය.
+කිසිවෙකුට හානියක් නොකරන්න.
+යහපත කරන්න — යහපතක් ලැබේ.
+විවිධ ශාස්ත්‍රවල, යන්ත‍්‍රය උසස් ගෞරවයකින් හැඳින්වේ, මන්ද එය දෙවි හා දෙවියන්ගේ සත්‍ය ප්‍රතිභාවය පිළිඹිබු කරන මාර්ගයක් බැවිනි.
+දෙවියෝ යන්ත‍්‍රය තුළ වාසය කරති යැයි කියപ്പെടുന്നു. එබැවින්, යන්ත‍්‍රයේ පූජාව නොකොට ඔබට දෙවියන් පුද නොකළ හැකිද, යන්ත‍්‍රයේ අපේක්ෂිත ප්‍රතිඵලද ලබාගත නොහැක.”**</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Remedies','Vedic Remedies: Mantras, Gems and Rituals That Work','May 4, 2025','https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=160&q=70','modal-remedies')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/684859269_1489083926562854_4025932095453259114_n.jpg" alt="Remedies"/>
+        <div class="tile-header">
+          <div class="tile-tag">Fierce Gods</div>
+          <div class="tile-title">🔱 නරසිංහ දෙවියන් කවුද?</div>
+          <div class="tile-date">May 4, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-remedies" class="modal-content" style="display:none">
+      <p>🔱 නරසිංහ දෙවියන් කවුද?
+නරසිංහ (Narasimha) කියන්නේ විෂ්ණු දෙවියන්ගේ 4වන අවතාරය.
+“නර” = මනුෂ්‍ය
+“සිංහ” = සිංහ
+ඒ කියන්නේ අර්ධ මනුෂ්‍ය + අර්ධ සිංහ රූපයකින් ප්‍රකාශ වූ දේව අවතාරයක්.
+👉 ඔහුගේ ප්‍රධාන කාර්යය:
+* ධර්මය ආරක්ෂා කිරීම
+* අධර්මය විනාශ කිරීම
+* භක්තිකයන් බේරාගැනීම
+📖 නරසිංහ අවතාර කතාව (වේද පුරාණ අනුව)
+මෙය විශේෂයෙන් සඳහන් වෙන්නේ භාගවත පුරාණය තුළයි.
+* අසුර රජු හිරණ්‍යකශිපු
+    → තමන්ට අමරණීය වීමේ වර ලබාගත්තා
+* ඔහුගේ පුතා ප්‍රහ්ලාද
+    → විෂ්ණු භක්තිකයෙක්
+* රජා පුතාට විෂ්ණු වන්දනා කිරීම නවත්වන්න කිව්වා
+* නමුත් ප්‍රහ්ලාද භක්තිය අත්හැරියේ නැහැ
+👉 අන්තිමට:
+හිරණ්‍යකශිපු “ඔබගේ දෙවියන් මේ ස්ථම්භයේද ඉන්නේද?” කියලා ඇහුවා
+👉 ඒ වෙලාවේ:
+ස්ථම්භය පුපුරලා නරසිංහ දෙවියන් ප්‍රකාශ වුණා!
+👉 ඔහු:
+* මනුෂ්‍ය නොවන
+* සත්ව නොවන
+* දවල් නොවන / රෑ නොවන (සන්ධ්‍යා වේලාව)
+* ගෘහය තුළ නොවන / පිටත නොවන (දොරකඩ)
+👉 මේ හැම කොන්දේසිම ඉටු කරමින්
+හිරණ්‍යකශිපුව විනාශ කළා
+🌕 නරසිංහ ජයන්ති කියන්නේ මොකක්ද?
+👉 නරසිංහ දෙවියන් ප්‍රකාශ වූ දිනයයි
+📅 එය වැටෙන්නේ:
+* වෛශාඛ මාසයේ ශුක්ල පක්ෂයේ චතුර్దශී දිනයේ
+👉 මේ දිනේ:
+* දුෂ්ට බලයන්ට එරෙහිව
+* ආරක්ෂාව ලබාගන්න
+* භක්තිය ශක්තිමත් කරගන්න
+වැදගත්ම දිනයක් ලෙස සැලකෙයි
+🔥 වන්දනා කිරීමේ වේද ක්‍රම
+👉 සාමාන්‍යයෙන් කරන්නේ:
+* නරසිංහ මන්ත්‍ර ජපය
+* විෂ්ණු පූජා
+* දීප පූජා (තෙල් පහන)
+* උපවාසය 
+* සන්ධ්‍යා කාලයේ විශේෂ ආරති
+👉 ප්‍රධාන මන්ත්‍රයක්:
+“ඕම් උග්‍රං වීරං මහාවිෂ්ණුං ජ්වලන්තං සර්වතෝ මුඛම්…”
+🛡️ නරසිංහ වන්දනා සහ සුවය / ආරක්ෂාව
+වෙදික විශ්වාස අනුව:
+1. 🧘‍♂️ මානසික හා ශාරීරික සුවය
+* භය, ආතතිය, කනස්සල්ල අඩු කරනවා
+* “අභය” ශක්තිය (fearlessness) ලබාදෙනවා
+* ශරීරයේ ප්‍රාණ ශක්තිය (energy flow) සමබර කරනවා
+2. 🧿 දුෂ්ට බල / කලු මැජික් වලට එරෙහිව
+* නරසිංහ දෙවියන් “උග්‍ර” (දැඩි) ශක්තියක්
+* එය negative energies, black magic, evil eye වගේ දේවල් වලට
+    රක්ෂණ වළල්ලක් (protective shield) ලෙස ක්‍රියා කරනවා
+👉 ඒ නිසා:
+* බොහෝ තන්ත්‍රික පූජා වල
+* නරසිංහ යන්ත්‍ර / මන්ත්‍ර භාවිතා කරනවා
+3. 🏠 වාස්තු / ගෙදර ආරක්ෂාව
+* නරසිංහ රූපයක් දොරටුව අසල තැබීම
+    → negative energies වලට වැළැක්වීමක් ලෙස සැලකෙයි</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Compatibility','Kundali Matching: The 8 Kootas Explained','May 2, 2025','https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?w=160&q=70','modal-kundali')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/591426871_1360334259437822_2601195382169240086_n.jpg" alt="Kundali"/>
+        <div class="tile-header">
+          <div class="tile-tag">God</div>
+          <div class="tile-title">නවගුඤ්ජර (Navagunjara) ආකාරය</div>
+          <div class="tile-date">May 2, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-kundali" class="modal-content" style="display:none">
+      <p> 
+නවගුඤ්ජර යන්න ඔඩිශා (Odisha) ප්‍රදේශ්‍යයේ ජගන්නාථ සංස්කෘතියෙන් සහ මහාභාරත සන්ධර්භයකට අයත් බොහෝ අලංකාර මෛත්‍රීමය මිතුරු වෛෂ්ණව අයිතිකාරයකි. මෙය භගවන් ක්‍රිෂ්ණ/විෂ්ණුගේ අද්භුත “බහුජන්ම” අවතාරාත්මක රූපයක් ලෙස සලකයි.
+1. නවගුඤ්ජර කියන්නේ මොකක්ද?
+“නව” = නවයි
+“ගුඤ්ජර” = සත්තු/සත්වය
+ඒ කියන්නේ අංශ 9කින් ඉදිකර ඇති එකම සත්වයක අද්භූත අපූර්ව ජ්‍යේෂ්ඨ රූපයක්.
+මෙය මහාභාරතයේ වනාස පර්වයේ සඳහන් වන අතර, අර්ජුනට භගවන් ක්‍රිෂ්ණයන් විසින් දැක්වූ ලෝකෝත්තාර රූපයකි.
+නවගුඤ්ජර සම්මත රූපය සතුන් 9ක් එක්වූ ආකාරයකි:
+ 1. සිංහගේ හිස
+ 2. මයුරපිංචා පඬි (peacock neck feathers)
+ 3. ශ්වානයෙකුගේ ගෙඩි/පනහ
+ 4. සර්පයෙකුගේ වාලය
+ 5. ගොනාගේ (ox) පසු පිට
+ 6. බැල්ලා/ඇලි (tiger or leopard) අතු
+ 7. මයුර පියාපත්
+ 8. මෘගයාගේ පාදය
+ 9. මානෙකෙකුගේ (deer) හෝ අශ්වයාගේ පසු පෙරල්</p>
+    </div>
+  </div>
+  <div class="section-footer"><button class="view-all-btn">View All Astrology Articles →</button></div>
+
+  <!-- ══════════════════════════════════
+       🏠 VASTU
+  ══════════════════════════════════ -->
+  <div id="vastu" class="section-header">
+    <span class="section-label">🏠 Vastu Magazine</span>
+    <div class="section-header-line"></div>
+  </div>
+
+  <div class="articles-grid">
+        <!--Saji akka's House-->    
+    <div class="art-tile" onclick="openIntGallery(0)">
+      <div class="tile-top">
+        <img class="tile-img" src="images/637582388_1429023635902217_4720921902044049217_n.jpg" alt="Interior Designs 1"/>
+        <div class="tile-header">
+          <div class="tile-tag">Interior Designs</div>
+          <div class="tile-title">🏡 Living Room Collection</div>
+          <div class="tile-date">View all 8 designs</div>
+        </div>
+      </div>
+      <div class="tile-toggle">View Gallery <span class="tile-arrow">›</span></div>
+    </div>
+
+    <div class="art-tile" onclick="openIntGallery(1)">
+      <div class="tile-top">
+        <img class="tile-img" src="images/635610764_1429027162568531_3098732231808545250_n.jpg" alt="Interior Designs 2"/>
+        <div class="tile-header">
+          <div class="tile-tag">Interior Designs</div>
+          <div class="tile-title">🏡 Bedroom Collection</div>
+          <div class="tile-date">View all 8 designs</div>
+        </div>
+      </div>
+      <div class="tile-toggle">View Gallery <span class="tile-arrow">›</span></div>
+    </div>
+
+    <div class="art-tile" onclick="openIntGallery(2)">
+      <div class="tile-top">
+        <img class="tile-img" src="images/637936121_1429026959235218_440584605662606729_n.jpg" alt="Interior Designs 3"/>
+        <div class="tile-header">
+          <div class="tile-tag">Interior Designs</div>
+          <div class="tile-title">🏡 Kitchen Collection</div>
+          <div class="tile-date">View all 8 designs</div>
+        </div>
+      </div>
+      <div class="tile-toggle">View Gallery <span class="tile-arrow">›</span></div>
+    </div>
+
+    <div class="art-tile" onclick="openIntGallery(3)">
+      <div class="tile-top">
+        <img class="tile-img" src="images/638006546_1429026732568574_2295111858510068998_n.jpg" alt="Interior Designs 4"/>
+        <div class="tile-header">
+          <div class="tile-tag">Interior Designs</div>
+          <div class="tile-title">🏡 Dining Room Collection</div>
+          <div class="tile-date">View all 8 designs</div>
+        </div>
+      </div>
+      <div class="tile-toggle">View Gallery <span class="tile-arrow">›</span></div>
+    </div>
+
+    <div class="art-tile" onclick="openIntGallery(4)">
+      <div class="tile-top">
+        <img class="tile-img" src="images/639046752_1429026932568554_7878988299441077872_n.jpg" alt="Interior Designs 5"/>
+        <div class="tile-header">
+          <div class="tile-tag">Interior Designs</div>
+          <div class="tile-title">🏡 Pooja Room Collection</div>
+          <div class="tile-date">View all 8 designs</div>
+        </div>
+      </div>
+      <div class="tile-toggle">View Gallery <span class="tile-arrow">›</span></div>
+    </div>
+
+    <div class="art-tile" onclick="openIntGallery(5)">
+      <div class="tile-top">
+        <img class="tile-img" src="images/639103814_1429026762568571_9165739437791970580_n.jpg" alt="Interior Designs 6"/>
+        <div class="tile-header">
+          <div class="tile-tag">Interior Designs</div>
+          <div class="tile-title">🏡 Entrance &amp; Foyer Collection</div>
+          <div class="tile-date">View all 8 designs</div>
+        </div>
+      </div>
+      <div class="tile-toggle">View Gallery <span class="tile-arrow">›</span></div>
+    </div>
+
+    <div class="art-tile" onclick="openIntGallery(6)">
+      <div class="tile-top">
+        <img class="tile-img" src="images/639155450_1429027212568526_5166019792531984435_n.jpg" alt="Interior Designs 7"/>
+        <div class="tile-header">
+          <div class="tile-tag">Interior Designs</div>
+          <div class="tile-title">🏡 Balcony &amp; Outdoor Collection</div>
+          <div class="tile-date">View all 8 designs</div>
+        </div>
+      </div>
+      <div class="tile-toggle">View Gallery <span class="tile-arrow">›</span></div>
+    </div>
+
+  </div>
+  <div class="section-footer"><button class="view-all-btn">View All Vastu Articles →</button></div>
+
+  <!-- ══════════════════════════════════
+       🧘 SPIRITUAL
+  ══════════════════════════════════ -->
+  <div id="spiritual" class="section-header">
+    <span class="section-label">🧘 Spiritual Magazine</span>
+    <div class="section-header-line"></div>
+  </div>
+
+  <div class="articles-grid">
+
+    <div class="art-tile" onclick="openModal('Mantra Shastra','The Power of Mantra: How Sacred Sounds Transform Your Life','May 24, 2025','https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=160&q=70','modal-mantra')">
+      <div class="tile-top">
+        <img class="tile-img" src="images/600143472_1372109994926915_6815890630620776628_n.jpg" alt="Mantra"/>
+        <div class="tile-header">
+          <div class="tile-tag">Gods</div>
+          <div class="tile-title">පූර්ණත්‍රයිශේසන් දෙවියන්</div>
+          <div class="tile-date">May 17, 2026</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-mantra" class="modal-content" style="display:none">
+      <p>
+විෂ්ණු දෙවියන් සන්තනගෝපාල මූර්ති ලෙස, සර්ප දෙවියන්වන අනන්ත (ආදිශේෂ) ගේ හිස් පහ ශිඋර්ශය වටා ආවරණය යටතේ අසුන්ගත් ස්වරූපයෙන් ප්‍රතිමාගත කර ඇත.
+දරුවන් ලැබීම සඳහා ආශිර්වාද ලබාදෙන දෙවියන් ලෙස විශ්වාස කෙරේ. ඒ නිසා දරුවන් අපේක්ෂා කරන දම්පතින්ට මෙය අතිශයින් වැදගත් වන්දනා ස්ථානයකි.
+කේරළයේ කොචි නගරයට ආසන්න ත්‍රිපුනිතුරා (Tripunithura) ප්‍රදේශයේ පිහිටා ඇත. මෙය පුරාණ කොචින් රාජධානියේ රාජකීය දේවාල අටෙන් එකකි.
+• නමේ අර්ථය:
+පූර්ණ – සම්පූර්ණ
+ත්‍රයි – වෙද තුන (රිග්, යජුර්, සාම)
+ඊශ – ස්වාමී / දෙවියන්
+“වෙද තුනෙන් සම්පූර්ණ වූ ස්වාමී” යන අර්ථය දරයි.
+මෙම දේවාලය විශාල උත්සව සඳහා ප්‍රසිද්ධය. විශේෂයෙන් වෘශ්චිකෝළ්සවම් (Vrishchikolsavam) උත්සවයේදී සුන්දර ලෙස සැරසූ අලි බහුලව දැකගත හැක.
+• විශේෂ ප්‍රතිමාව:
+සාමාන්‍යයෙන් විෂ්ණු දෙවියන් ශයන (නිදන) ස්වරූපයෙන් දැක්වෙන අතර, මෙහිදී දෙවියන් අසුන්ගත් (ආසන) ස්වරූපයෙන් සිටීම අතිශයින් විශේෂයි.
+පුරාවෘත්තයට අනුව බ්‍රාහ්මණයෙකුගේ මියගිය දරුවන් නැවත ජීවිතයට ගෙන ඒම සඳහා අර්ජුන විෂ්ණු දෙවියන්ගෙන් උපකාර ඉල්ලා ඇත. එම අවස්ථාවේදී විෂ්ණු දෙවියන් අර්ජුනට මෙම දේව ප්‍රතිමාව ලබාදී ඇතැයි කියවේ. පසුව එම ප්‍රතිමාව ත්‍රිපුනිතුරා නගරයේ ස්ථාපිත කර ඇති අතර, එයින් පූර්ණත්‍රයිශේසන් දෙවියන්ගේ වන්දනාව ආරම්භ වී ඇත.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Dhyana','Meditation for Beginners — A Vedic Approach to Inner Peace','May 21, 2025','https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=160&q=70','modal-meditation')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=160&q=70" alt="Meditation"/>
+        <div class="tile-header">
+          <div class="tile-tag">Dhyana</div>
+          <div class="tile-title">Meditation for Beginners — A Vedic Approach to Inner Peace</div>
+          <div class="tile-date">May 21, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-meditation" class="modal-content" style="display:none">
+      <p>Vedic meditation differs from mindfulness in that it uses a personalised mantra as the anchor rather than the breath. The technique is practised twice daily for 20 minutes, seated comfortably — not in any forced posture.</p>
+      <p>Begin by sitting quietly, closing your eyes, and allowing thoughts to settle naturally for 2 minutes. Then silently repeat your mantra without forcing it. When the mind drifts, gently return.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Yoga Nidra','Yoga Nidra: The Sleep of the Gods and Deep Healing','May 18, 2025','https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=160&q=70','modal-yoganidra')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=160&q=70" alt="Yoga Nidra"/>
+        <div class="tile-header">
+          <div class="tile-tag">Yoga Nidra</div>
+          <div class="tile-title">Yoga Nidra: The Sleep of the Gods and Deep Healing</div>
+          <div class="tile-date">May 18, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-yoganidra" class="modal-content" style="display:none">
+      <p>Yoga Nidra — "yogic sleep" — is a state of conscious deep rest practised lying down. It systematically guides awareness through different layers of the body and mind, reaching the state between sleep and wakefulness where deep healing occurs.</p>
+      <p>One hour of Yoga Nidra is said to be equivalent to four hours of ordinary sleep. A single 30-minute session can lower blood pressure and reset the nervous system.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Chakras','Chakra Balancing Through Pranayama and Vedic Rituals','May 15, 2025','https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=160&q=70','modal-chakra')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=160&q=70" alt="Chakra"/>
+        <div class="tile-header">
+          <div class="tile-tag">Chakras</div>
+          <div class="tile-title">Chakra Balancing Through Pranayama and Vedic Rituals</div>
+          <div class="tile-date">May 15, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-chakra" class="modal-content" style="display:none">
+      <p>The seven major chakras correspond to specific nerve plexuses along the spine. Imbalances manifest as physical ailments, emotional blocks, or mental fog. Pranayama — controlled breathing — is the most direct tool for restoring balance.</p>
+      <p>Nadi Shodhana (alternate nostril breathing) purifies the Ida and Pingala nadis, creating balance between left and right hemispheres. Practised for 10 minutes before sunrise, it activates the Ajna chakra and improves intuition.</p>
+    </div>
+    <div class="art-tile" onclick="openModal('Ayurveda','Ayurveda and Astrology: Your Dosha and Your Chart','May 12, 2025','https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=160&q=70','modal-ayurveda')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=160&q=70" alt="Ayurveda"/>
+        <div class="tile-header">
+          <div class="tile-tag">Ayurveda</div>
+          <div class="tile-title">Ayurveda and Astrology: Your Dosha and Your Chart</div>
+          <div class="tile-date">May 12, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-ayurveda" class="modal-content" style="display:none">
+      <p>Ayurveda and Jyotisha (Vedic astrology) are sister sciences — both branches of the same Vedic knowledge system. Your dominant dosha (Vata, Pitta, or Kapha) can be confirmed and refined by studying the strength of specific planets in your birth chart.</p>
+      <p>A strong Mars and Sun typically produce a Pitta constitution. A prominent Moon and Venus indicate Kapha. Saturn and Rahu influencing the ascendant often produce Vata. Knowing this combination allows you to tailor diet, routine, and seasonal practices with precision.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Sacred Fire','Homa and Havan: The Science of Sacred Fire Rituals','May 10, 2025','https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&q=70','modal-homa')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&q=70" alt="Homa"/>
+        <div class="tile-header">
+          <div class="tile-tag">Sacred Fire</div>
+          <div class="tile-title">Homa and Havan: The Science of Sacred Fire Rituals</div>
+          <div class="tile-date">May 10, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-homa" class="modal-content" style="display:none">
+      <p>Homa (also called Havan) is the Vedic fire ritual in which specific herbs, ghee, and grains are offered into a consecrated fire while mantras are chanted. The fire acts as a transmitter — converting physical offerings into energetic transmissions to the planetary deities.</p>
+      <p>Modern research has documented that Agnihotra (a specific daily homa) significantly reduces airborne bacterial count and increases soil fertility in surrounding areas. The combination of specific wood smoke, ghee combustion, and sound vibration creates measurable environmental changes.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Karma','Understanding Karma: Past Lives and Present Circumstances','May 8, 2025','https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=160&q=70','modal-karma')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=160&q=70" alt="Karma"/>
+        <div class="tile-header">
+          <div class="tile-tag">Karma</div>
+          <div class="tile-title">Understanding Karma: Past Lives and Present Circumstances</div>
+          <div class="tile-date">May 8, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-karma" class="modal-content" style="display:none">
+      <p>Karma is not punishment — it is the precise law of cause and effect operating across multiple lifetimes. In Vedic astrology, the nodes of the Moon (Rahu and Ketu) represent the karmic axis: Ketu shows what you have mastered in previous lives, Rahu shows what you must learn in this one.</p>
+      <p>The 12th house reveals karmic debts, hidden enemies, and self-undoing patterns inherited from past actions. The 5th house shows Purva Punya — the accumulated merit from past lives that manifests as gifts, intelligence, and unexpected good fortune in this lifetime.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Festivals','Vedic Festival Calendar: The Spiritual Significance of Each','May 6, 2025','https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=160&q=70','modal-festivals')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=160&q=70" alt="Festivals"/>
+        <div class="tile-header">
+          <div class="tile-tag">Festivals</div>
+          <div class="tile-title">Vedic Festival Calendar: The Spiritual Significance of Each</div>
+          <div class="tile-date">May 6, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-festivals" class="modal-content" style="display:none">
+      <p>Vedic festivals are not merely cultural celebrations — each is astronomically timed to specific planetary positions that amplify the potency of spiritual practice. Shivaratri occurs when the Moon is at its weakest (new moon in Aquarius/Pisces), making it the ideal night for deep meditation and surrender.</p>
+      <p>Navratri aligns with the Sun's transition into Aries and Libra — the two equinox periods when cosmic energy is in perfect balance. The nine nights of goddess worship during these periods are specifically designed to work with the heightened feminine energy available at these junctures.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Mudras','Healing Mudras: Hand Gestures That Balance the Five Elements','May 4, 2025','https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=160&q=70','modal-mudras')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=160&q=70" alt="Mudras"/>
+        <div class="tile-header">
+          <div class="tile-tag">Mudras</div>
+          <div class="tile-title">Healing Mudras: Hand Gestures That Balance the Five Elements</div>
+          <div class="tile-date">May 4, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-mudras" class="modal-content" style="display:none">
+      <p>Each finger corresponds to one of the five elements: thumb (fire), index (air), middle (space/ether), ring (earth), little finger (water). Mudras are precise finger configurations that redirect the flow of prana within the body by balancing these elemental energies.</p>
+      <p>Gyan Mudra (thumb and index touching) enhances concentration and memory — ideal during study or meditation. Prana Mudra (ring and little fingers touching the thumb) boosts overall vitality and immune function. 15 minutes daily is sufficient for noticeable effects within two weeks.</p>
+    </div>
+
+    <div class="art-tile" onclick="openModal('Dharma','Dharma vs Karma: Living in Alignment With Your Soul Purpose','May 2, 2025','https://images.unsplash.com/photo-1488085061387-422e29b40080?w=160&q=70','modal-dharma')">
+      <div class="tile-top">
+        <img class="tile-img" src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=160&q=70" alt="Dharma"/>
+        <div class="tile-header">
+          <div class="tile-tag">Dharma</div>
+          <div class="tile-title">Dharma vs Karma: Living in Alignment With Your Soul Purpose</div>
+          <div class="tile-date">May 2, 2025</div>
+        </div>
+      </div>
+      <div class="tile-toggle">Read More <span class="tile-arrow">›</span></div>
+    </div>
+    <div id="modal-dharma" class="modal-content" style="display:none">
+      <p>Dharma is your soul's rightful path in this lifetime — the unique contribution you are here to make. In Vedic astrology, it is revealed primarily by the 1st, 5th, and 9th houses (the dharma trine) and the placement of their lords. When you live aligned with your dharma, karma resolves naturally.</p>
+      <p>The conflict between duty (dharma) and desire (kama) is the central tension in the Bhagavad Gita. Acting from dharma means performing your role with full effort but without attachment to outcomes — the practice that gradually burns accumulated karma without creating new binding impressions.</p>
+    </div>
+  </div>
+  <div class="section-footer"><button class="view-all-btn">View All Spiritual Articles →</button></div>
+
+</div><!-- /page -->
+
+<!-- ══ MODAL OVERLAY ══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <img class="modal-header-img" id="modalImg" src="" alt=""/>
+      <div class="modal-header-text">
+        <div class="modal-tag" id="modalTag"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-date" id="modalDate"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ══ INTERIOR IMAGE MODAL ══ -->
+<div class="int-gallery-overlay" id="intGalleryOverlay" onclick="handleIntGalleryClick(event)">
+  <div class="int-gallery-box">
+    <button class="int-gallery-close" onclick="closeIntGallery()">✕</button>
+    <div class="int-gallery-title" id="intGalleryTitle">🏡 Interior Designs</div>
+    <div class="int-gallery-grid">
+      <img src="images/637582388_1429023635902217_4720921902044049217_n.jpg" onclick="openIntBig(this.src)" alt="Interior 1"/>
+      <img src="images/635610764_1429027162568531_3098732231808545250_n.jpg" onclick="openIntBig(this.src)" alt="Interior 2"/>
+      <img src="images/637936121_1429026959235218_440584605662606729_n.jpg" onclick="openIntBig(this.src)" alt="Interior 3"/>
+      <img src="images/638006546_1429026732568574_2295111858510068998_n.jpg" onclick="openIntBig(this.src)" alt="Interior 4"/>
+      <img src="images/639046752_1429026932568554_7878988299441077872_n.jpg" onclick="openIntBig(this.src)" alt="Interior 5"/>
+      <img src="images/639103814_1429026762568571_9165739437791970580_n.jpg" onclick="openIntBig(this.src)" alt="Interior 6"/>
+      <img src="images/639155450_1429027212568526_5166019792531984435_n.jpg" onclick="openIntBig(this.src)" alt="Interior 7"/>
+      <img src="images/639156176_1429026719235242_1516938801523751733_n.jpg" onclick="openIntBig(this.src)" alt="Interior 8"/>
+    </div>
+  </div>
+</div>
+
+<!-- Big image viewer -->
+<div class="int-big-overlay" id="intBigOverlay" onclick="closeIntBig()">
+  <img id="intBigImg" src="" alt="Interior Design"/>
+</div>
+
+<script>
+  /* ── Article modal (Astrology & Spiritual sections) ── */
+  function openModal(tag, title, date, imgSrc, contentId) {
+    document.getElementById('modalTag').textContent = tag;
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalDate').textContent = date;
+    document.getElementById('modalImg').src = imgSrc;
+    const content = document.getElementById(contentId);
+    document.getElementById('modalBody').innerHTML = content ? content.innerHTML : '';
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  /* ── Interior gallery ── */
+  const intGalleryTitles = [
+    '🏡 Living Room Collection',
+    '🏡 Bedroom Collection',
+    '🏡 Kitchen Collection',
+    '🏡 Dining Room Collection',
+    '🏡 Pooja Room Collection',
+    '🏡 Entrance & Foyer Collection',
+    '🏡 Balcony & Outdoor Collection'
+  ];
+
+  function openIntGallery(idx) {
+    document.getElementById('intGalleryTitle').textContent = intGalleryTitles[idx] || '🏡 Interior Designs';
+    document.getElementById('intGalleryOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeIntGallery() {
+    document.getElementById('intGalleryOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function handleIntGalleryClick(e) {
+    if (e.target === document.getElementById('intGalleryOverlay')) closeIntGallery();
+  }
+
+  /* ── Big image viewer ── */
+  function openIntBig(src) {
+    document.getElementById('intBigImg').src = src;
+    document.getElementById('intBigOverlay').classList.add('active');
+  }
+  function closeIntBig() {
+    document.getElementById('intBigOverlay').classList.remove('active');
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+      closeIntGallery();
+      closeIntBig();
+    }
+  });
+</script>
+</body>
+</html>
