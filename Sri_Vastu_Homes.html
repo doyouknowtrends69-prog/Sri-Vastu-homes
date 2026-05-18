@@ -239,12 +239,12 @@
     .map-btn.wa:hover { background: var(--green-wa-dark); }
 
     /* Interior Carousel */
-    .interior-tile { background: white; border-radius: 8px; border: 2px solid var(--maroon); overflow: hidden; display: flex; flex-direction: column; }
-    .interior-carousel { position: relative; flex: 3; height: 350px; }
+   .interior-tile { background: white; border-radius: 8px; border: 2px solid var(--maroon); overflow: hidden; display: flex; flex-direction: column; width: 100%; }
+   .interior-carousel { position: relative; flex: 3; height: 350px; width: 100%; min-width: 0; }
     /*display: grid; grid-template-columns: 1fr 0.34fr 0.66fr; gap: 14px; height: 500px*/
     .int-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s; background-size: cover; background-position: center; }
     .int-slide.active { opacity: 1; }
-    .int-prev, .int-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(245, 245, 245, 0.65); color: white; border: none; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 16px; z-index: 5; }
+   .int-prev, .int-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(74,14,14,0.65); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 20px; z-index: 5; display: flex; align-items: center; justify-content: center; }
     .int-prev { left: 8px; } .int-next { right: 8px; }
     .int-prev:hover, .int-next:hover { background: var(--saffron); }
 
@@ -392,7 +392,7 @@
       .about-stats { width: 100%; }
 
       .row-4col { grid-template-columns: 1fr; }
-      .interior-carousel { height: 240px; }
+     .interior-carousel { height: 240px; width: 100%; }
 
       .row-5col { grid-template-columns: 1fr; }
       .recom-body { grid-template-columns: 1fr 1fr !important; }
@@ -414,7 +414,7 @@
       .abt-con2 { padding: 24px 12px 0px; }
       .about-stats { width: 100%; grid-template-columns: 1fr 1fr; }
 
-      .interior-carousel { height: 200px; }
+      .interior-carousel { height: 200px; width: 100%; }
 
       .recom-body { grid-template-columns: 1fr !important; }
 
