@@ -3135,7 +3135,7 @@ background: #1a1008;
   // STEP: Paste your Google Apps Script Web App URL here
   // after you deploy it. See the guide in google_apps_script.js
   // ══════════════════════════════════════════════════════
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhfgH9OYJX0qLNk_Ly58GfLKEd-5r-CTYpr9r-pTAwV4xf6K0u-xf8ydjxQetPqhLivQ/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbynRAcoNvkeoG1zQ4wb2T-a6oarpYFi9rUL7F4WVmLTOAzbkfVZf9AQEKaPWCNs71Lp7A/exec';
 
   /* ── Fallback seed shown while loading or if Sheet is empty ── */
   const SEED = [
@@ -3151,7 +3151,7 @@ background: #1a1008;
 
   /* ── Fetch approved testimonials from Google Sheet on page load ── */
   async function fetchFromSheet() {
-    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbyhfgH9OYJX0qLNk_Ly58GfLKEd-5r-CTYpr9r-pTAwV4xf6K0u-xf8ydjxQetPqhLivQ/exec') return; // not set up yet
+    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbynRAcoNvkeoG1zQ4wb2T-a6oarpYFi9rUL7F4WVmLTOAzbkfVZf9AQEKaPWCNs71Lp7A/exec') return; // not set up yet
     try {
       const res = await fetch(SCRIPT_URL + '?action=get', { redirect: 'follow' });
       const data = await res.json();
@@ -3167,7 +3167,7 @@ background: #1a1008;
 
   /* ── POST new submission to Google Sheet ── */
   async function submitToSheet(entry) {
-    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbyhfgH9OYJX0qLNk_Ly58GfLKEd-5r-CTYpr9r-pTAwV4xf6K0u-xf8ydjxQetPqhLivQ/exec') {
+    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbynRAcoNvkeoG1zQ4wb2T-a6oarpYFi9rUL7F4WVmLTOAzbkfVZf9AQEKaPWCNs71Lp7A/exec') {
       // Script not set up — fail gracefully
       return false;
     }
