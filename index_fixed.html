@@ -3151,7 +3151,7 @@ background: #1a1008;
 
   /* ── Fetch approved testimonials from Google Sheet on page load ── */
   async function fetchFromSheet() {
-    if (SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL') return; // not set up yet
+    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxoBxfLxiEqVr0HNqlw5nKWR4kCYuWYD011q5HtCS5fRPVTjDtX0b7R35uyRz6Ef3lblA/exec') return; // not set up yet
     try {
       const res  = await fetch(SCRIPT_URL + '?action=get');
       const data = await res.json();
@@ -3167,7 +3167,7 @@ background: #1a1008;
 
   /* ── POST new submission to Google Sheet ── */
   async function submitToSheet(entry) {
-    if (SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL') {
+    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbxoBxfLxiEqVr0HNqlw5nKWR4kCYuWYD011q5HtCS5fRPVTjDtX0b7R35uyRz6Ef3lblA/exec') {
       // Script not set up — fail gracefully
       return false;
     }
