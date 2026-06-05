@@ -6503,59 +6503,68 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ================================================
-   TESTIMONIALS — load from sheet + infinite ticker
+   TESTIMONIALS — all functions + sheet integration
    ================================================ */
 
+// Single URL declaration — used by both load and submit
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw_FUfn54e5DEK4AlcoARulF32FltMrJ224_Avcn4dWh34qKI5hDnAN_FhRBqbNSEo/exec';
 
-// Build one ticker card from data
+// Open / close modal
+function openTestiModal() {
+  document.getElementById('testiModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeTestiModal() {
+  document.getElementById('testiModal').classList.remove('open');
+  document.body.style.overflow = '';
+  var btn = document.getElementById('testiSubmitBtn');
+  if (btn) btn.disabled = false;
+  var st = document.getElementById('testiStatus');
+  if (st) { st.textContent = ''; st.className = 'testi-status'; }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && document.getElementById('testiModal').classList.contains('open')) {
+    closeTestiModal();
+  }
+});
+
+// Build one ticker card from sheet data
 function buildTestiCard(name, location, rating, message) {
-  const stars = '★'.repeat(Math.min(5, Math.max(1, parseInt(rating) || 5)));
-  const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
-  return `
-    <div class="testi-card">
-      <div class="testi-stars">${stars}</div>
-      <p class="testi-text">${message}</p>
-      <div class="testi-author">
-        <div class="testi-avatar">${initials}</div>
-        <div>
-          <div class="testi-name">${name}</div>
-          <div class="testi-location">${location || '—'}</div>
-        </div>
-      </div>
-    </div>`;
+  const stars    = '★'.repeat(Math.min(5, Math.max(1, parseInt(rating) || 5)));
+  const initials = name.split(' ').map(function(w){ return w[0]; }).join('').toUpperCase().slice(0, 2);
+  return '<div class="testi-card">' +
+    '<div class="testi-stars">' + stars + '</div>' +
+    '<p class="testi-text">' + message + '</p>' +
+    '<div class="testi-author">' +
+      '<div class="testi-avatar">' + initials + '</div>' +
+      '<div>' +
+        '<div class="testi-name">' + name + '</div>' +
+        '<div class="testi-location">' + (location || '—') + '</div>' +
+      '</div>' +
+    '</div></div>';
 }
 
-// Load from Google Sheet and inject into ticker
+// Load testimonials from Google Sheet into ticker
 async function loadTestimonials() {
   const track = document.getElementById('testiTrack');
   if (!track) return;
-
   try {
     const res  = await fetch(GOOGLE_SHEET_URL, { method: 'GET', mode: 'cors' });
     const data = await res.json();
-
     if (data && data.length > 0) {
-      // Prepend live cards before the seed cards
-      const liveHTML = data.map(d =>
-        buildTestiCard(d.name, d.location, d.rating, d.message)
-      ).join('');
+      const liveHTML = data.map(function(d) {
+        return buildTestiCard(d.name, d.location, d.rating, d.message);
+      }).join('');
       track.insertAdjacentHTML('afterbegin', liveHTML);
     }
   } catch(err) {
-    // Sheet unreachable — seeds still show, no visible error
     console.warn('Testimonials fetch failed:', err);
   }
-
-  // Clone all cards (seeds + live) for seamless infinite scroll
   track.innerHTML = track.innerHTML + track.innerHTML;
 }
-
 loadTestimonials();
 
-// ---- Google Sheets submission ----
-// STEP: Replace this URL with your deployed Google Apps Script Web App URL
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw_FUfn54e5DEK4AlcoARulF32FltMrJ224_Avcn4dWh34qKI5hDnAN_FhRBqbNSEo/exec';
-
+// Submit testimonial to Google Sheet
 async function submitTestimonial() {
   const name     = (document.getElementById('testiName').value || '').trim();
   const location = (document.getElementById('testiLocation').value || '').trim();
