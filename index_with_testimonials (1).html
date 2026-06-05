@@ -6503,38 +6503,58 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ================================================
-   TESTIMONIALS — infinite ticker clone + form submit
+   TESTIMONIALS — load from sheet + infinite ticker
    ================================================ */
-(function() {
-  // Duplicate ticker cards for seamless infinite scroll
-  const track = document.getElementById('testiTrack');
-  if (track) {
-    const clone = track.innerHTML;
-    track.innerHTML = clone + clone; // double the cards
-  }
-})();
+const GOOGLE_SHEET_URL = 'YOUR_DEPLOYMENT_URL_HERE';
 
-function openTestiModal() {
-  document.getElementById('testiModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+// Build one ticker card from data
+function buildTestiCard(name, location, rating, message) {
+  const stars = '★'.repeat(Math.min(5, Math.max(1, parseInt(rating) || 5)));
+  const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  return `
+    <div class="testi-card">
+      <div class="testi-stars">${stars}</div>
+      <p class="testi-text">${message}</p>
+      <div class="testi-author">
+        <div class="testi-avatar">${initials}</div>
+        <div>
+          <div class="testi-name">${name}</div>
+          <div class="testi-location">${location || '—'}</div>
+        </div>
+      </div>
+    </div>`;
 }
-function closeTestiModal() {
-  document.getElementById('testiModal').classList.remove('open');
-  document.body.style.overflow = '';
-  var btn = document.getElementById('testiSubmitBtn');
-  if (btn) btn.disabled = false;
-  var st = document.getElementById('testiStatus');
-  if (st) { st.textContent = ''; st.className = 'testi-status'; }
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && document.getElementById('testiModal').classList.contains('open')) {
-    closeTestiModal();
+
+// Load from Google Sheet and inject into ticker
+async function loadTestimonials() {
+  const track = document.getElementById('testiTrack');
+  if (!track) return;
+
+  try {
+    const res  = await fetch(GOOGLE_SHEET_URL, { method: 'GET', mode: 'cors' });
+    const data = await res.json();
+
+    if (data && data.length > 0) {
+      // Prepend live cards before the seed cards
+      const liveHTML = data.map(d =>
+        buildTestiCard(d.name, d.location, d.rating, d.message)
+      ).join('');
+      track.insertAdjacentHTML('afterbegin', liveHTML);
+    }
+  } catch(err) {
+    // Sheet unreachable — seeds still show, no visible error
+    console.warn('Testimonials fetch failed:', err);
   }
-});
+
+  // Clone all cards (seeds + live) for seamless infinite scroll
+  track.innerHTML = track.innerHTML + track.innerHTML;
+}
+
+loadTestimonials();
 
 // ---- Google Sheets submission ----
 // STEP: Replace this URL with your deployed Google Apps Script Web App URL
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwsd7ZokXIs2MK2ndFnCZqca9Rx5lAsKz9Tpj_tvGc8f6y8QCxniEOhpzBfBbUe3WBH/exec';
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw_FUfn54e5DEK4AlcoARulF32FltMrJ224_Avcn4dWh34qKI5hDnAN_FhRBqbNSEo/exec';
 
 async function submitTestimonial() {
   const name     = (document.getElementById('testiName').value || '').trim();
